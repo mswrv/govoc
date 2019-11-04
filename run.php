@@ -7,6 +7,14 @@
  **/
 
 require "./gojek.class.php";
+echo "\e[93m
+  ___  ___ ___   _____ ___   _   __  __   __  __ _  _____ 
+ / __|/ __| _ ) |_   _| __| /_\ |  \/  | |  \/  | |/ / __|
+ \__ \ (_ | _ \   | | | _| / _ \| |\/| | | |\/| | ' <\__ \
+ |___/\___|___/   |_| |___/_/ \_\_|  |_| |_|  |_|_|\_\___/
+                                                          
+\n";
+echo "\e[93m Timezone : ".date('d-m-Y H:i:s')."\n";
 echo "[#] Nomor : "; $nomor = trim(fgets(STDIN));
 $gojek = new Gojek($nomor);
 $register = $gojek->register();
@@ -22,7 +30,6 @@ if(isset($register['success'])){
         $send = $gojek->send_otp($register['otp_token'], $otp);
     }
     echo "[+] Access token for number ".$nomor." is ".$send['access_token'].PHP_EOL;
-    file_input_contents("token/".$name['fullname'].".txt"]).PHP_EOL;
     echo "[$] Try to redeem GOFOODBOBA07".PHP_EOL;
     echo $gojek->redeem("GOFOODBOBA07", 0, $send['access_token'])['success'] == true ? "\n[$] Success redeem GOFOODBOBA07..".PHP_EOL : "\n[!] Failed redeem GOFOODBOBA07..".PHP_EOL;
     sleep(10);
